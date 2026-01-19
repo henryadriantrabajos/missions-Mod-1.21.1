@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import net.thebins.misionescomarca.common.data.MisionesJsonLoader;
+import net.thebins.misionescomarca.common.data.ModAttachments;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -36,6 +37,7 @@ public class MisionesComarca {
 
         NeoForge.EVENT_BUS.addListener(this::onReloadListeners);
 
+        ModAttachments.ATTACHMENTS.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.

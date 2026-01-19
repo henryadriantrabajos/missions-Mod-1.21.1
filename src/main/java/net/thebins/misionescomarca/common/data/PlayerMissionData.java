@@ -26,13 +26,11 @@ public class PlayerMissionData implements INBTSerializable<CompoundTag> {
     }
 
     @Override
-    public void deserializeNBT(HolderLookup.Provider provider, CompoundTag nbt) {
+    public void deserializeNBT(HolderLookup.Provider provider, CompoundTag tag) {
         missions.clear();
-        for (String key : nbt.getAllKeys()) {
-            missions.put(
-                    ResourceLocation.parse(key),
-                    MisionesProgreso.load(nbt.getCompound(key))
-            );
+        for (String key : tag.getAllKeys()) {
+            ResourceLocation id = ResourceLocation.parse(key);
+            missions.put(id, MisionesProgreso.load(tag.getCompound(key)));
 
         }
     }
