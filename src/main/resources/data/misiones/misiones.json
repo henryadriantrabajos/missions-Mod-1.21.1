@@ -1,0 +1,20 @@
+{
+  "misiones": [
+    {
+      "id": "misiones:test_mission",
+      "tipo": "Historia",
+      "titulo": "Primera misión",
+      "descripcion": "Esto es una misión de prueba",
+      "repetible": false,
+      "comunitario": false
+    },
+    {
+      "id": "misiones:daily_test",
+      "tipo": "Diario",
+      "titulo": "Misión diaria",
+      "descripcion": "Una misión repetible",
+      "repetible": true,
+      "comunitario": false
+    }
+  ]
+}
