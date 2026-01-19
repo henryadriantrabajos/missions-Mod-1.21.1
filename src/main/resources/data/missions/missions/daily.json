@@ -1,0 +1,12 @@
+{
+  "missions": [
+    {
+      "id": "missions:daily_test",
+      "type": "Daily",
+      "title": "Misión diaria",
+      "description": "Una misión repetible",
+      "repeatable": true,
+      "community": false
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "missions": [
+    {
+      "id": "missions:test_mission",
+      "type": "Story",
+      "title": "Primera misión",
+      "description": "Esto es una misión de prueba",
+      "repeatable": false,
+      "community": false
+    }
+  ]
+}

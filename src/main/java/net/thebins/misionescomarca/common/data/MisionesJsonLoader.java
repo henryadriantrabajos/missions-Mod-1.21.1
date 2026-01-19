@@ -8,7 +8,7 @@ import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.profiling.ProfilerFiller;
 import net.thebins.misionescomarca.MisionesComarca;
-import net.thebins.misionescomarca.common.misiones.Misiones;
+import net.thebins.misionescomarca.common.misiones.Mission;
 import net.thebins.misionescomarca.common.misiones.MisionesType;
 import org.slf4j.Logger;
 
@@ -19,7 +19,7 @@ public class MisionesJsonLoader extends SimpleJsonResourceReloadListener {
     private static final Logger LOGGER = MisionesComarca.LOGGER;
 
     public MisionesJsonLoader(){
-        super(MisionesComarca.GSON, "misiones");
+        super(MisionesComarca.GSON, "missions");
     }
 
     @Override
@@ -28,22 +28,22 @@ public class MisionesJsonLoader extends SimpleJsonResourceReloadListener {
 
         for (JsonElement element : object.values()){
             JsonObject root = element.getAsJsonObject();
-            JsonArray misiones = root.getAsJsonArray("misiones");
+            JsonArray missions = root.getAsJsonArray("missions");
 
-            for (JsonElement misionesElement : misiones){
-                JsonObject obj = misionesElement.getAsJsonObject();
+            for (JsonElement missionsElement : missions){
+                JsonObject obj = missionsElement.getAsJsonObject();
 
-                Misiones misiones1 = new Misiones(
-                        new ResourceLocation(obj.get("id").getAsString()),
-                        MisionesType.valueOf(obj.get("Tipo").getAsString()),
-                        obj.get("titulo").getAsString(),
-                        obj.get("descripcion").getAsString(),
-                        obj.get("repetible").getAsBoolean(),
-                        obj.get("comunitario").getAsBoolean()
+                Mission mision = new Mission(
+                        ResourceLocation.parse(obj.get("id").getAsString()),
+                        MisionesType.valueOf(obj.get("type").getAsString()),
+                        obj.get("title").getAsString(),
+                        obj.get("description").getAsString(),
+                        obj.get("repeatable").getAsBoolean(),
+                        obj.get("community").getAsBoolean()
                 );
 
-                MisionesManager.register(misiones1);
-                LOGGER.info("Mision Cargada: {}", misiones1.getId());
+                MisionesManager.register(mision);
+                LOGGER.info("Mision Cargada: {}", mision.getId());
             }
         }
 
