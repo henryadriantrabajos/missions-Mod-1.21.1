@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import net.neoforged.neoforge.event.AddReloadListenerEvent;
 import net.thebins.misionescomarca.common.data.MisionesJsonLoader;
 import net.thebins.misionescomarca.common.data.ModAttachments;
+import net.thebins.misionescomarca.common.events.MissionEvents;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -34,6 +35,8 @@ public class MisionesComarca {
     public MisionesComarca(IEventBus modEventBus, ModContainer modContainer) {
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
+
+        NeoForge.EVENT_BUS.register(MissionEvents.class);
 
         NeoForge.EVENT_BUS.addListener(this::onReloadListeners);
 

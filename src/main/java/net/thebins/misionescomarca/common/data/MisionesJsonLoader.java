@@ -8,6 +8,7 @@ import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.util.profiling.ProfilerFiller;
 import net.thebins.misionescomarca.MisionesComarca;
+import net.thebins.misionescomarca.common.misiones.CriteriaType;
 import net.thebins.misionescomarca.common.misiones.Mission;
 import net.thebins.misionescomarca.common.misiones.MisionesType;
 import org.slf4j.Logger;
@@ -22,6 +23,12 @@ public class MisionesJsonLoader extends SimpleJsonResourceReloadListener {
         super(MisionesComarca.GSON, "missions");
     }
 
+    private static String getString(JsonObject obj, String key) {
+        if (!obj.has(key))
+            throw new RuntimeException("Falta campo '" + key + "' en misión: " + obj);
+        return obj.get(key).getAsString();
+    }
+
     @Override
     protected void apply(Map<ResourceLocation, JsonElement> object, ResourceManager resourceManager, ProfilerFiller profiler) {
         MisionesManager.clear();
@@ -34,12 +41,15 @@ public class MisionesJsonLoader extends SimpleJsonResourceReloadListener {
                 JsonObject obj = missionsElement.getAsJsonObject();
 
                 Mission mision = new Mission(
-                        ResourceLocation.parse(obj.get("id").getAsString()),
-                        MisionesType.valueOf(obj.get("type").getAsString()),
-                        obj.get("title").getAsString(),
-                        obj.get("description").getAsString(),
+                        ResourceLocation.parse(getString(obj, "id")),
+                        MisionesType.valueOf(getString(obj, "Type")),
+                        getString(obj,"title"),
+                        getString(obj, "description"),
                         obj.get("repeatable").getAsBoolean(),
-                        obj.get("community").getAsBoolean()
+                        obj.get("community").getAsBoolean(),
+                        CriteriaType.valueOf(getString(obj,"criteriatype")),
+                        getString(obj,"target"),
+                        obj.get("goal").getAsInt()
                 );
 
                 MisionesManager.register(mision);

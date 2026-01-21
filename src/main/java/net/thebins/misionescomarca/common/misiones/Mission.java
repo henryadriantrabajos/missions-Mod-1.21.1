@@ -10,6 +10,9 @@ public class Mission {
     private String description;
     private boolean repeatable;
     private boolean community;
+    private CriteriaType criteriatype;
+    private String target;
+    private int goal;
 
     public Mission(
       ResourceLocation id,
@@ -17,7 +20,10 @@ public class Mission {
       String title,
       String description,
       boolean repeatable,
-      boolean community
+      boolean community,
+      CriteriaType criteriatype,
+      String target,
+      int goal
 
     ){
         this.id = id;
@@ -26,6 +32,9 @@ public class Mission {
         this.description = description;
         this.repeatable = repeatable;
         this.community = community;
+        this.criteriatype = criteriatype;
+        this.target = target;
+        this.goal = goal;
 
     }
 
@@ -51,6 +60,18 @@ public class Mission {
 
     public boolean isCommunity(){
         return community;
+    }
+
+    public CriteriaType getCriteriatype(){
+        return criteriatype;
+    }
+
+    public String getTarget(){
+        return target;
+    }
+
+    public int getGoal(){
+        return goal;
     }
 
 }

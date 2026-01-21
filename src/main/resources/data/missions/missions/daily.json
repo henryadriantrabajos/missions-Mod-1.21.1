@@ -2,11 +2,14 @@
   "missions": [
     {
       "id": "missions:daily_test",
-      "type": "Daily",
-      "title": "Misión diaria",
-      "description": "Una misión repetible",
+      "Type": "Daily",
+      "title": "Caza diaria",
+      "description": "Una misión repetible de caza",
       "repeatable": true,
-      "community": false
+      "community": false,
+      "criteriatype":"KILL",
+      "target":"minecraft:zombie",
+      "goal":"5"
     }
   ]
 }
